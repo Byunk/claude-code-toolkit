@@ -1,0 +1,9 @@
+{
+  "name": "fullstack-dev",
+  "description": "Comprehensive full-stack development toolkit with commands and agents for feature development, refactoring, debugging, testing, and deployment across any tech stack",
+  "version": "1.0.0",
+  "author": {
+    "name": "Kyungho Byoun",
+    "email": "kyungho.byoun@gmail.com"
+  }
+}
