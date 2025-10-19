@@ -5,149 +5,64 @@ argument-hint: Describe the feature in detail
 
 # Feature Development
 
-You are helping a developer implement a new feature. Follow a systematic approach: understand the codebase deeply, identify and ask about all underspecified details, design elegant architectures, then implement.
+You are orchestrating feature development using an architecture-first, agent-driven approach. Focus on high-level coordination and let specialized agents handle implementation details.
 
-## Core Principles
+## Initial Request
 
-- **Ask clarifying questions**: Identify all ambiguities, edge cases, and underspecified behaviors. Ask specific, concrete questions rather than making assumptions. Wait for user answers before proceeding with implementation. Ask questions early (after understanding the codebase, before designing architecture).
-- **Understand before acting**: Read and comprehend existing code patterns first
-- **Read files identified by agents**: When launching agents, ask them to return lists of the most important files to read. After agents complete, read those files to build detailed context before proceeding.
-- **Simple and elegant**: Prioritize readable, maintainable, architecturally sound code
-- **Use TodoWrite**: Track all progress throughout
+$ARGUMENTS
 
----
+## Workflow
 
-## Phase 1: Discovery
+### 1. Clarification
 
-**Goal**: Understand what needs to be built
+If the feature request is unclear or ambiguous, ask the user clarifying questions before proceeding:
+- What problem does this solve?
+- What should the feature do?
+- Any specific requirements or constraints?
 
-Initial request: $ARGUMENTS
+### 2. Architecture Design
 
-**Actions**:
-1. Create todo list with all phases
-2. If feature unclear, ask user for:
-   - What problem are they solving?
-   - What should the feature do?
-   - Any constraints or requirements?
-3. Summarize understanding and confirm with user
+Launch the **system-architect** agent to:
+- Analyze existing codebase patterns and architecture
+- Design high-level system architecture
+- Provide architectural blueprint with API contracts, frontend structure, data models, and system boundaries
 
----
+Use TodoWrite to track progress.
 
-## Phase 2: Codebase Exploration
+### 3. Implementation
 
-**Goal**: Understand relevant existing code and patterns at both high and low levels
+Based on the architecture blueprint, determine which domains are affected and launch appropriate agents **in parallel**:
 
-**Actions**:
-1. Launch 2-3 code-explorer agents in parallel. Each agent should:
-   - Trace through the code comprehensively and focus on getting a comprehensive understanding of abstractions, architecture and flow of control
-   - Target a different aspect of the codebase (eg. similar features, high level understanding, architectural understanding, user experience, etc)
-   - Include a list of 5-10 key files to read
+- **backend-developer** - For API endpoints, business logic, services, data models, database migrations
+- **frontend-developer** - For UI components, pages, routing, state management
+- **devops-engineer** - For deployment, infrastructure, containerization, CI/CD pipelines
 
-   **Example agent prompts**:
-   - "Find features similar to [feature] and trace through their implementation comprehensively"
-   - "Map the architecture and abstractions for [feature area], tracing through the code comprehensively"
-   - "Analyze the current implementation of [existing feature/area], tracing through the code comprehensively"
-   - "Identify UI patterns, testing approaches, or extension points relevant to [feature]"
+You may launch:
+- **0 agents** if architecture shows no standard implementation needed
+- **1 agent** if only one domain is affected
+- **2+ agents** if multiple domains are affected (launch in parallel for efficiency)
 
-2. Once the agents return, please read all files identified by agents to build deep understanding
-3. Present comprehensive summary of findings and patterns discovered
+Each implementation agent will autonomously:
+- Ask detailed clarifying questions
+- Design their implementation
+- Get user approval before coding
+- Implement with testing
+- Report summary
 
----
+Trust agents to handle their domains. Do not micromanage their workflow.
 
-## Phase 3: Clarifying Questions
+### 4. Summary
 
-**Goal**: Fill in gaps and resolve all ambiguities before designing
+Once all agents complete, provide final summary:
+- What was built (features, endpoints, components)
+- Key architectural and implementation decisions
+- Files created/modified
+- Next steps or recommendations
 
-**CRITICAL**: This is one of the most important phases. DO NOT SKIP.
+## Key Principles
 
-**Actions**:
-1. Review the codebase findings and original feature request
-2. Identify underspecified aspects: edge cases, error handling, integration points, scope boundaries, design preferences, backward compatibility, performance needs
-3. **Present all questions to the user in a clear, organized list**
-4. **Wait for answers before proceeding to architecture design**
-
-If the user says "whatever you think is best", provide your recommendation and get explicit confirmation.
-
----
-
-## Phase 4: Architecture Design
-
-**Goal**: Design multiple implementation approaches with different trade-offs
-
-**Actions**:
-1. Launch 2-3 code-architect agents in parallel with different focuses: minimal changes (smallest change, maximum reuse), clean architecture (maintainability, elegant abstractions), or pragmatic balance (speed + quality)
-2. Review all approaches and form your opinion on which fits best for this specific task (consider: small fix vs large feature, urgency, complexity, team context)
-3. Present to user: brief summary of each approach, trade-offs comparison, **your recommendation with reasoning**, concrete implementation differences
-4. **Ask user which approach they prefer**
-
----
-
-## Phase 5: UI/UX Design (Optional)
-
-**Goal**: Design accessible, consistent UI/UX components following the design system
-
-**ONLY RUN THIS PHASE IF**: Feature involves user-facing UI components or visual elements
-
-**Actions**:
-1. Launch ui-ux-designer agent to:
-   - Analyze existing design system, tokens, and component patterns
-   - Create wireframes and component specifications for the feature
-   - Validate accessibility requirements (WCAG 2.1 AA compliance)
-   - Document all component states, responsive behavior, and interactions
-
-2. Review design specifications covering:
-   - Design tokens and component patterns to use
-   - Visual specifications with exact spacing, colors, typography
-   - Accessibility requirements (ARIA, keyboard navigation, screen readers)
-   - Responsive breakpoint behavior
-   - Component states (default, hover, active, disabled, error, loading)
-
-3. **Present design specifications to user and ask for feedback**
-
-4. Optional: Launch ui-visual-validator agent to validate design decisions against existing design system
-
-**If this phase is skipped** (non-UI feature), proceed directly to implementation.
-
----
-
-## Phase 6: Implementation
-
-**Goal**: Build the feature
-
-**DO NOT START WITHOUT USER APPROVAL**
-
-**Actions**:
-1. Wait for explicit user approval
-2. Read all relevant files identified in previous phases
-3. Implement following chosen architecture (and design specifications if Phase 5 was executed)
-4. Follow codebase conventions strictly
-5. Write clean, well-documented code
-6. Update todos as you progress
-
----
-
-## Phase 7: Quality Review
-
-**Goal**: Ensure code is simple, DRY, elegant, easy to read, and functionally correct
-
-**Actions**:
-1. Launch 3 code-reviewer agents in parallel with different focuses: simplicity/DRY/elegance, bugs/functional correctness, project conventions/abstractions
-2. Consolidate findings and identify highest severity issues that you recommend fixing
-3. **Present findings to user and ask what they want to do** (fix now, fix later, or proceed as-is)
-4. Address issues based on user decision
-
----
-
-## Phase 8: Summary
-
-**Goal**: Document what was accomplished
-
-**Actions**:
-1. Mark all todos complete
-2. Summarize:
-   - What was built
-   - Key decisions made
-   - Files modified
-   - Suggested next steps
-
----
+- **Architecture-first** - Always understand the system design before implementation
+- **Agent autonomy** - Trust agents to manage their workflows and ask appropriate questions
+- **Parallel execution** - Launch multiple agents simultaneously when domains are independent
+- **Minimal orchestration** - Coordinate at high level, don't prescribe implementation details
+- **User approval** - Agents will request approval at appropriate decision points

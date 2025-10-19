@@ -5,16 +5,11 @@
     "email": "kyungho.byoun@gmail.com",
     "url": "https://github.com/Byunk"
   },
-  "metadata": {
-    "description": "Essential toolkit for coding in Claude Code",
-    "version": "1.0.0"
-  },
   "plugins": [
     {
       "name": "fullstack-dev",
       "description": "Core workflows for full-stack development, testing, and deployment",
-      "source": "./fullstack-dev",
-      "version": "1.0.0"
+      "source": "./fullstack-dev"
     }
   ]
 }

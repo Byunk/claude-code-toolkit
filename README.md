@@ -4,7 +4,7 @@ Comprehensive toolkit for coding in Claude Code.
 
 ## Plugins
 
-- [Fullstack Development](./fullstack-dev) - Core workflows for full-stack development, testing, and deployment
+- [Fullstack Development](./fullstack-dev) - Core workflows for full-stack development
 
 ## Installation
 
@@ -13,6 +13,18 @@ Launch Claude Code and run the following command:
 ```
 /plugin marketplace add byunk/claude-code-toolkit
 ```
+
+## Design Principles
+
+### Claude Code as a Dedicated Orchestrator
+
+An LLM model essentially suffers from the **Context Rot problem**. This means it loses its attention on earlier context as new context is added. As a result, Claude Code can forget initial architectural designs after writing code because it focuses more on the implementation details. 
+
+To address this, main Claude Code agent should include only minimal context and focus solely on orchestrating the subagents. This may cause subagents to use more redundant tokens, but it allows the main agent to remain focused on high-level planning rather than being distracted by details.
+
+### Allow Claude Code the freedom
+
+Claude Code is already highly capable. So, there's no need to limit its reasoning capabilities by providing excessive details in agent prompts, commands, or workflows. Keep instructions concise and let agents infer details and approach as needed.
 
 ## Additional curated plugins
 

@@ -1,34 +1,28 @@
 # Fullstack Development Plugin
 
-Systematic workflows and specialized agents for feature development, debugging, and testing.
+Architecture-first workflows and specialized autonomous agents for fullstack development.
 
 ## Commands
 
-Multi-phase workflows that guide development tasks from discovery to completion:
+Agentic workflows that orchestrate development tasks:
 
-- **`/feature-dev`** - Guided feature development with codebase understanding and architecture focus
-- **`/debugging`** - Systematic debugging workflow for deployment, CI/CD, runtime, and test failures
-- **`/test-dev`** - Semantic test development focused on behavior and user requirements
+- **`/feature-dev`** - Architecture-first feature development using system design to guide implementation
 
 ## Agents
 
-Specialized agents for deep analysis and design:
+Specialized autonomous agents that handle end-to-end workflows:
 
-- **code-explorer** - Traces feature implementations and maps architecture layers
-- **code-architect** - Designs feature architectures with comprehensive implementation blueprints
-- **code-reviewer** - Reviews code for bugs, quality issues, and project convention adherence
-- **devops-engineer** - Debugs infrastructure issues through log analysis and configuration validation
-- **test-engineer** - Designs behavior-focused test strategies with appropriate testing approaches
-- **ui-ux-designer** - Designs user flows with accessible, WCAG-compliant component specifications
+- **system-architect** - Designs high-level system architecture (API contracts, data models, frontend structure, system boundaries)
+- **backend-developer** - Implements backend features (API endpoints, business logic, data models, migrations, tests)
+- **frontend-developer** - Implements frontend features (UI components, pages, routing, state management, tests)
+- **devops-engineer** - Handles infrastructure and deployment (containers, orchestration, CI/CD, IaC)
 
 ## Usage
 
-Commands orchestrate entire workflows using multiple agents:
+Commands orchestrate workflows by launching agents in an architecture-first approach:
 
 ```bash
 /feature-dev Add user authentication with OAuth
-/debugging Container fails to start with port binding error
-/test-dev Test the payment processing flow
 ```
 
-Agents can be launched independently for focused tasks within workflows.
+Each agent autonomously handles analysis, clarification, design, approval, implementation, and testing for their domain.
