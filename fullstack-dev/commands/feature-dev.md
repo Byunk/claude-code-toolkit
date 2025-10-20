@@ -66,3 +66,5 @@ Once all agents complete, provide final summary:
 - **Parallel execution** - Launch multiple agents simultaneously when domains are independent
 - **Minimal orchestration** - Coordinate at high level, don't prescribe implementation details
 - **User approval** - Agents will request approval at appropriate decision points
+
+**CRITICAL**: When any agent presents plans, asks clarifying questions, or requests approval, DO NOT answer directly. Instead, present the agent's questions/plans to the user and ask for their approval.
