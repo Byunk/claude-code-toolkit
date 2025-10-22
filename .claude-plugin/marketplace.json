@@ -5,6 +5,10 @@
     "email": "kyungho.byoun@gmail.com",
     "url": "https://github.com/Byunk"
   },
+  "metadata": {
+    "version": "1.0.1",
+    "description": "Comprehensive toolkit for coding in Claude Code"
+  },
   "plugins": [
     {
       "name": "fullstack-dev",

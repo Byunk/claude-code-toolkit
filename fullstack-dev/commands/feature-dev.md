@@ -15,7 +15,7 @@ $ARGUMENTS
 
 ### 1. Clarification
 
-If the feature request is unclear or ambiguous, ask the user clarifying questions before proceeding:
+If the feature request is unclear or ambiguous, use the **AskUserQuestion** tool to ask clarifying questions before proceeding:
 - What problem does this solve?
 - What should the feature do?
 - Any specific requirements or constraints?
@@ -65,6 +65,6 @@ Once all agents complete, provide final summary:
 - **Agent autonomy** - Trust agents to manage their workflows and ask appropriate questions
 - **Parallel execution** - Launch multiple agents simultaneously when domains are independent
 - **Minimal orchestration** - Coordinate at high level, don't prescribe implementation details
-- **User approval** - Agents will request approval at appropriate decision points
+- **User approval** - Use AskUserQuestion tool when agents request approval at decision points
 
-**CRITICAL**: When any agent presents plans, asks clarifying questions, or requests approval, DO NOT answer directly. Instead, present the agent's questions/plans to the user and ask for their approval.
+**CRITICAL**: When any agent presents plans, asks clarifying questions, or requests approval, DO NOT answer on behalf of the user. Instead, use the **AskUserQuestion** tool to present the agent's questions/plans to the user and get their input or approval.
