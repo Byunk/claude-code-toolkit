@@ -6,6 +6,7 @@ Comprehensive toolkit for coding in Claude Code.
 
 - [Fullstack Development](./fullstack-dev) - Core workflows for full-stack development
 - [Code Review](./code-review) - Comprehensive code review and PR analysis
+- [erd-skill](./erd-skill) - Database design and ERD creation using DBML format
 
 ## Installation
 

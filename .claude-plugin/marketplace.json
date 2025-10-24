@@ -19,6 +19,15 @@
       "name": "code-review",
       "description": "Comprehensive code review toolkit for quality, architecture, and security analysis",
       "source": "./code-review"
+    },
+    {
+      "name": "erd-skill",
+      "description": "Database design and ERD toolkit using DBML format for schema creation and analysis",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./erd-skill"
+      ]
     }
   ]
 }
