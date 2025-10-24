@@ -1,38 +1,60 @@
 # Claude Code Toolkit
 
-Comprehensive toolkit for coding in Claude Code.
+A comprehensive plugin toolkit for Claude Code, with a clear separation of concerns.
+
+Anthropic has released powerful features for Claude Code: commands, agents, hooks, and skills. However, finding effective examples of their use remains challenging. One of the common mistakes is defining responsibilities with ambiguous boundaries, which confuses Claude Code and leads to misbehavior.
+
+This project helps you to use these features effectively by providing a set of plugins and core design principles.
 
 ## Plugins
 
 - [Fullstack Development](./fullstack-dev) - Core workflows for full-stack development
 - [Code Review](./code-review) - Comprehensive code review and PR analysis
-- [erd-skill](./erd-skill) - Database design and ERD creation using DBML format
+- [ERD Skill](./erd-skill) - Database design and ERD creation using DBML format
 
 ## Installation
 
 Launch Claude Code and run the following command:
 
-```
+```bash
 /plugin marketplace add byunk/claude-code-toolkit
+```
+
+## Usage Guide
+
+Use the fllowing slash commands as needed.
+
+```bash
+/fullstack-dev:feature-dev <Describe the feature in detail>
+/code-review:code-review <File paths or changes you want to review>
+/code-review:pr-review <PR number or branch name>
 ```
 
 ## Design Principles
 
 ### Claude Code as a Dedicated Orchestrator
 
-An LLM model essentially suffers from the **Context Rot problem**. This means it loses its attention on earlier context as new context is added. As a result, Claude Code can forget initial architectural designs after writing code because it focuses more on the implementation details. 
+LLMs experience attention degradation over long contexts, known as the [**Context Rot problem**](https://research.trychroma.com/context-rot). As more context accumulates, Claude Code tends to forget initial context which typically includes the most important requirements and high-level plans—and instead focuses on implementation details.
 
-To address this, main Claude Code agent should include only minimal context and focus solely on orchestrating the subagents. This may cause subagents to use more redundant tokens, but it allows the main agent to remain focused on high-level planning rather than being distracted by details.
+To address this, keep the primary context window minimal and focused on high-level orchestration. Delegate low-level details, such as context gathering, sub-planning, and execution, to subagents. While subagents might occasionally gather redundant information by using more tokens, this approach ensures the main agent remains focused on high-level planning without distraction.
 
 ### Task Delegation to Subagents
 
-[Subagents](https://docs.claude.com/en/docs/claude-code/sub-agents) keep isolated contexts from the main conversation. This helps keep the main context clean and focused on high-level orchestration.
+[Subagents](https://docs.claude.com/en/docs/claude-code/sub-agents) maintain contexts isolated from the main conversation. This keeps the main context clean and focused on orchestration.
 
-For this isolation to be effective, subagents should be designed to run tasks independently without additional input. Each subagent should focus on clear and complete responsibilities with necessary information provided upfront. Therefore, define subagents only when there are clear benefits to separating context.
+For effective isolation, define each subagent with a single, clear, and complete responsibility so it can run tasks independently within a single context window.
+
+One of the best practices is to create a subagent only when there are clear benefits to separating context.
+
+### Domain Knowledge to Skills
+
+[Skills](https://docs.claude.com/en/docs/claude-code/skills) package domain knowledge (instructions, scripts, resources) for specific tools and file types.
+
+However, it might mess up the context window with low-level details. Therefore, skills has to be called carefully with proper context window management. One of the best practices is to call skills by subagents which keep isolated contexts about low-level details.
 
 ### Allow Claude Code the freedom
 
-Claude Code is already highly capable. So, there's no need to limit its reasoning capabilities by providing excessive details in agent prompts, commands, or workflows. Keep instructions concise and let agents infer details and approach as needed.
+Claude is a highly capable model. There’s no reason to constrain its reasoning with overly prescriptive instructions. Keep guidance concise and let it infer details and approach as needed.
 
 ## Additional curated plugins
 
