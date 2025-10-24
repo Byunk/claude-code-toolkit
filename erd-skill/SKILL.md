@@ -7,7 +7,7 @@ description: Comprehensive database design and ERD (Entity-Relationship Diagram)
 
 ## Overview
 
-This skill enables comprehensive database design and ERD creation using DBML (Database Markup Language) as the primary format. Use this skill for creating database schemas from natural language requirements, analyzing and improving existing DBML files, providing database design guidance, and ensuring best practices in data modeling.
+This skill helps you design, analyze, and manage database schemas using DBML (Database Markup Language). DBML is a simple, readable DSL for defining database structures that can be converted to SQL and visualized as ERDs. Use this skill for creating new schemas, analyzing existing designs, and converting between DBML and SQL formats.
 
 ## When to Use This Skill
 
@@ -17,186 +17,135 @@ Trigger this skill when users request:
 - "Analyze this DBML file and suggest improvements"
 - "Help me design a database for [use case]"
 - "Review my database schema"
+- "Convert DBML to SQL" or "Convert SQL to DBML"
 - Working with `.dbml` files
 - Database normalization, indexing, or relationship guidance
 
-## Core Capabilities
+## Resource Guide
 
-### 1. Creating ERDs from Requirements
+### For DBML Syntax Questions
 
-When creating a new database schema from requirements:
+**Read `DBML.md` when:**
+- Users ask about specific DBML syntax (tables, columns, relationships)
+- You need to understand index or constraint syntax
+- Working with enums, notes, or TableGroups
+- Learning about TablePartials for reusable field sets
+- Questions about DBML capabilities and advanced features
 
-**Step 1: Understand Requirements**
-- Identify entities (main data objects like users, products, orders)
-- Determine attributes for each entity
-- Identify relationships between entities
-- Clarify business rules and constraints
+### For Design Best Practices
 
-**Step 2: Apply Design Principles**
-- Use singular nouns for entity names in schema definitions
-- Use plural nouns for table names (e.g., `Table users`)
-- Apply appropriate normalization (usually 3NF)
-- Define primary keys (auto-increment integers or UUIDs)
-- Establish foreign key relationships
-- Add appropriate indexes for query performance
+**Read `best-practices.md` when:**
+- Analyzing existing schemas for improvements
+- Deciding on normalization levels (1NF, 2NF, 3NF)
+- Planning indexing strategies
+- Choosing naming conventions
+- Understanding relationship patterns (one-to-many, many-to-many, etc.)
+- Implementing common patterns (timestamps, soft deletes, audit trails, versioning)
+- Making performance vs normalization trade-offs
 
-**Step 3: Reference Templates**
-For common patterns, reference or adapt from `templates/`:
-- `basic.dbml` - Simple user-following system
-- `advanced.dbml` - Complex e-commerce schema with products, orders, and users
+### For Schema Templates
 
-**Step 4: Add Documentation**
-- Include table notes explaining purpose
-- Document column notes for complex fields
-- Use TableGroups to organize related tables
-- Document constraints and business rules
+**Read `templates/` when:**
+- Starting a new schema and need a reference pattern
+- `templates/basic.dbml` - Simple user-following system example
+- `templates/advanced.dbml` - Complex e-commerce schema with products, orders, and users
 
-**Example Request:** "Create an ERD for a task management system"
+Use templates as starting points or adapt patterns for similar use cases.
 
-**Approach:**
-1. Identify core entities: users, projects, tasks, comments
-2. Define relationships: users → projects (many-to-many), projects → tasks (one-to-many), tasks → comments (one-to-many)
-3. Add timestamps, soft deletes, audit fields as needed
-4. Create DBML schema with proper indexes and constraints
-5. Organize with TableGroups
+### For CLI Operations
 
-### 2. Analyzing Existing DBML Schemas
+**Read `cli.md` when:**
+- Converting DBML to SQL (various database types)
+- Converting SQL to DBML
+- Generating DBML directly from a live database connection
+- Need examples of command-line usage
 
-When analyzing an existing DBML file:
+## Workflows
 
-**Read and Parse**
-- Load the DBML file to understand current structure
-- Identify tables, relationships, indexes, and constraints
+### Reading and Analyzing Schemas
 
-**Check Best Practices**
-Reference `best-practices.md` to verify:
-- Naming conventions (consistent snake_case, appropriate naming)
-- Normalization level (typically 3NF, check for anomalies)
-- Index strategy (foreign keys indexed, composite indexes optimized)
-- Data types (appropriate for each field)
-- Constraints (NOT NULL, unique, check constraints)
-- Missing timestamps (created_at, updated_at)
-- Relationship integrity (proper foreign keys, cascade rules)
+**For understanding schema structure:**
+1. Read the `.dbml` file directly
+2. Analyze table relationships, indexes, and constraints
+3. Reference `DBML.md` for syntax clarification if needed
 
-**Identify Issues**
-Common problems to look for:
-- Missing indexes on foreign keys
-- Missing unique constraints
-- Inconsistent naming conventions
-- Over-normalization or under-normalization
-- Missing audit fields (created_at, updated_at)
-- Unclear or missing documentation
-- Circular dependencies
-- Missing or incorrect relationship cardinality
+**For schema review and improvements:**
+1. Read the existing `.dbml` file
+2. **MANDATORY - READ ENTIRE FILE**: Read `best-practices.md` completely from start to finish. **NEVER set any range limits when reading this file.**
+3. Check against standards:
+   - Naming conventions
+   - Normalization level (1NF, 2NF, 3NF)
+   - Index strategy
+   - Missing constraints or timestamps
+   - Relationship integrity
+4. Prioritize recommendations (critical, important, nice-to-have)
+5. Provide concrete DBML improvements
 
-**Provide Recommendations**
-- Prioritize suggestions (critical, important, nice-to-have)
-- Explain reasoning for each recommendation
-- Provide concrete DBML code for improvements
+### Creating New Schemas
 
-### 3. Database Design Guidance
+1. **Understand requirements**: Clarify entities, relationships, and business rules
+2. **Choose a template**: Read relevant template from `templates/` for similar patterns
+   - `templates/basic.dbml` for simple applications
+   - `templates/advanced.dbml` for complex e-commerce-like systems
+3. **MANDATORY - READ FILES**: Read both `best-practices.md` and `DBML.md` completely from start to finish for design principles and syntax
+4. **Design the schema**:
+   - Define tables with appropriate data types
+   - Apply naming conventions (plural tables, singular columns, snake_case)
+   - Add primary keys and indexes
+   - Define relationships between tables
+   - Apply normalization guidelines (typically target 3NF)
+5. **Add documentation**:
+   - Include table and column notes
+   - Group related tables with TableGroups
+   - Document constraints and business rules
+6. **Use TablePartials** for reusable patterns (timestamps, soft deletes, etc.)
 
-When providing database design advice:
+### Modifying Existing Schemas
 
-**Normalization Decisions**
-- Explain normalization levels (1NF, 2NF, 3NF) when relevant
-- Guide when to denormalize for performance
-- Balance normalization with query performance
+1. Read the existing `.dbml` file
+2. Identify the required changes
+3. Reference `DBML.md` for syntax when adding new features
+4. Reference `best-practices.md` for design decisions
+5. Apply changes while maintaining consistency with existing patterns
+6. Update documentation (notes, comments)
 
-**Indexing Strategy**
-- Identify columns frequently used in WHERE, JOIN, ORDER BY clauses
-- Recommend composite indexes for common query patterns
-- Consider index trade-offs (read vs write performance)
+### CLI Operations (DBML ↔ SQL Conversion)
 
-**Relationship Patterns**
-- One-to-Many: Foreign key in "many" table
-- Many-to-Many: Junction table with composite primary key
-- One-to-One: Unique foreign key or table merging
-- Polymorphic: Include type discriminator column
+**Converting DBML to SQL:**
+1. **Read `cli.md`** for command syntax and examples
+2. Use `dbml2sql` command:
+   ```bash
+   dbml2sql schema.dbml --mysql -o schema.sql
+   ```
+3. Specify target database: `--mysql`, `--postgres`, `--mssql`, `--oracle`
 
-**Common Patterns**
-Reference patterns from `best-practices.md`:
-- Timestamps (created_at, updated_at)
-- Soft deletes (deleted_at)
-- Audit trails (history tables)
-- Versioning (version columns)
-- Polymorphic associations
+**Converting SQL to DBML:**
+1. **Read `cli.md`** for command syntax and examples
+2. Use `sql2dbml` command:
+   ```bash
+   sql2dbml dump.sql --postgres -o schema.dbml
+   ```
+3. Specify source database type
 
-### 4. DBML Syntax Reference
+**Generating from live database:**
+1. **Read `cli.md`** for connection string examples
+2. Use `db2dbml` command with appropriate connection string
+3. Support for: PostgreSQL, MySQL, MSSQL, Snowflake, BigQuery
 
-When users need DBML syntax help, reference `DBML.md` which contains:
-- Complete DBML syntax documentation
-- Table, column, and relationship definitions
-- Index and constraint syntax
-- Enum definitions
-- Note and documentation syntax
-- TableGroup organization
+## Code Style Guidelines
 
-Load this reference when:
-- Users ask about specific DBML syntax
-- Creating complex schemas with advanced features
-- Questions about DBML capabilities
+**IMPORTANT**: When generating DBML schemas:
+- Write concise, readable DBML code
+- Use consistent naming conventions (snake_case, plural tables, singular columns)
+- Add comments only for complex business logic
+- Use table and column notes for documentation instead of excessive comments
+- Leverage TablePartials for reusable patterns (timestamps, audit fields)
+- Group related tables with TableGroups for better organization
+- Keep indexes close to their table definitions
 
-### 5. Interactive Design Process
+## Dependencies
 
-For complex database design tasks:
+Required dependencies (install if not available):
 
-**Collaborative Approach:**
-1. Start with high-level entity identification
-2. Iterate on relationships and cardinality
-3. Refine attributes and data types
-4. Add constraints and indexes
-5. Review and optimize
-6. Document thoroughly
-
-**Ask Clarifying Questions:**
-- "Should users be able to belong to multiple organizations?"
-- "Do you need to track historical changes to orders?"
-- "What queries will be most common?"
-- "Are there any unique business constraints?"
-
-## Output Format
-
-When creating or modifying DBML schemas:
-
-**File Structure:**
-```dbml
-// Clear header comment explaining the schema
-
-Table tablename {
-  id integer [primary key, increment]
-  // columns with appropriate types and constraints
-  created_at timestamp [not null, default: `now()`]
-
-  indexes {
-    // indexes for query optimization
-  }
-
-  Note: 'Clear description of table purpose'
-}
-
-// Additional tables with relationships
-
-TableGroup groupname {
-  // logically related tables
-}
-```
-
-**Best Practices in Output:**
-- Include comments for complex logic
-- Use consistent formatting
-- Group related tables with TableGroups
-- Add notes for non-obvious design decisions
-- Document constraints and business rules
-
-## Resources
-
-- **`DBML.md`** - Complete DBML syntax documentation. Load when users need specific syntax help or when creating complex schemas.
-- **`best-practices.md`** - Database design best practices including normalization, indexing, naming conventions, and common patterns. Reference when analyzing schemas or providing design guidance.
-
-### templates/
-Ready-to-use DBML templates for common scenarios:
-- **`basic.dbml`** - Simple user-following system
-- **`advanced.dbml`** - Complex e-commerce schema with products, orders, and users
-
-Use these templates as starting points or reference examples when creating similar systems.
+- **@dbml/cli**: `npm install -g @dbml/cli` (for DBML ↔ SQL conversion)
+  - Includes: `dbml2sql`, `sql2dbml`, `db2dbml` commands
