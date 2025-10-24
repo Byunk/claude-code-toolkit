@@ -5,6 +5,7 @@ Comprehensive toolkit for coding in Claude Code.
 ## Plugins
 
 - [Fullstack Development](./fullstack-dev) - Core workflows for full-stack development
+- [Code Review](./code-review) - Comprehensive code review and PR analysis
 
 ## Installation
 

@@ -1,0 +1,9 @@
+{
+  "name": "code-review",
+  "description": "Comprehensive code review toolkit for quality, architecture, and security analysis",
+  "version": "1.0.0",
+  "author": {
+    "name": "Kyungho Byoun",
+    "email": "kyungho.byoun@gmail.com"
+  }
+}

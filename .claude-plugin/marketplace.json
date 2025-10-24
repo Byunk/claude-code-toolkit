@@ -14,6 +14,11 @@
       "name": "fullstack-dev",
       "description": "Core workflows for full-stack development, testing, and deployment",
       "source": "./fullstack-dev"
+    },
+    {
+      "name": "code-review",
+      "description": "Comprehensive code review toolkit for quality, architecture, and security analysis",
+      "source": "./code-review"
     }
   ]
 }
