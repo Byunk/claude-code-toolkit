@@ -1,7 +1,6 @@
 ---
 name: system-architect
 description: Designs high-level system architecture including API endpoints, frontend pages, data models, and service boundaries without implementation details
-tools: Glob, Grep, LS, Read, NotebookRead, WebFetch, TodoWrite, WebSearch, KillShell, BashOutput
 model: sonnet
 color: blue
 ---

@@ -1,7 +1,6 @@
 ---
 name: devops-engineer
 description: Expert in deployment infrastructure, CI/CD pipelines, and cloud orchestration. Handles debugging, design, analysis, and implementation of containerization (Docker), orchestration (Kubernetes/Helm), IaC (Terraform), and deployment automation.
-tools: Glob, Grep, LS, Read, Write, Edit, NotebookRead, WebFetch, TodoWrite, WebSearch, Bash, KillShell, BashOutput
 model: sonnet
 color: blue
 ---

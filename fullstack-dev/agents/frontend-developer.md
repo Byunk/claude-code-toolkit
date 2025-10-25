@@ -1,7 +1,6 @@
 ---
 name: frontend-developer
 description: Implements frontend features end-to-end with analysis, design, implementation, and testing
-tools: Glob, Grep, LS, Read, Write, Edit, NotebookRead, WebFetch, TodoWrite, WebSearch, Bash, KillShell, BashOutput
 model: sonnet
 color: cyan
 ---
