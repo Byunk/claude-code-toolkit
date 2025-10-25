@@ -64,3 +64,9 @@ Claude is a highly capable model. There’s no reason to constrain its reasoning
 ## Contributing
 
 Contributions are welcome! Whether you have ideas for plugin designs, feedback on existing agents, or suggestions for new workflows, please open an issue or submit a pull request.
+
+Use `scripts/dev-install.sh` to locally install the plugins for development.
+
+```bash
+./scripts/dev-install.sh <plugin-name>
+```
