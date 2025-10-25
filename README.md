@@ -70,5 +70,5 @@ Contributions are welcome! Whether you have ideas for plugin designs, feedback o
 Use `scripts/dev-install.sh` to locally install the plugins for development.
 
 ```bash
-./scripts/dev-install.sh <plugin-name>
+./scripts/dev-install.sh
 ```
