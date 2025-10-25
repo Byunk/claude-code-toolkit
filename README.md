@@ -22,12 +22,14 @@ Launch Claude Code and run the following command:
 
 ## Usage Guide
 
-Use the fllowing slash commands as needed.
+Use the following slash commands as needed.
 
 ```bash
 /fullstack-dev:feature-dev <Describe the feature in detail>
-/code-review:code-review <File paths or changes you want to review>
-/code-review:pr-review <PR number or branch name>
+
+/code-review:code-review Review the PR #123
+/code-review:code-review Review the changes in the current branch
+/code-review:code-review Review the changes in the FOO module
 ```
 
 ## Design Principles

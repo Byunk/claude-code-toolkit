@@ -1,11 +1,11 @@
 ---
-description: Review specific files or recent changes for code quality and architecture
-argument-hint: File paths or leave empty for recent changes
+description: Comprehensive code review based on requirements
+argument-hint: Review requirements and scope
 ---
 
 # Code Review
 
-You are orchestrating a focused code review for specific files or recent changes. Keep coordination high-level and let the code-reviewer agent handle the detailed analysis.
+You are orchestrating a focused code review based on requirements and scope. Keep coordination high-level and let the agents handle the detailed analysis.
 
 ## Initial Request
 
@@ -13,56 +13,71 @@ $ARGUMENTS
 
 ## Workflow
 
+Use TodoWrite to track the workflow.
+
 ### 1. Determine Review Scope
 
 Identify what needs to be reviewed:
 
-**If file paths provided**:
-- Review the specified files
+- If the specific file paths are provided, review the specified files
+- If the specific changes are provided, review the specified changes
+- If the specific PR is provided, review the specified PR
+- If no arguments provided, review the recent changes by using git status and git diff
 
-**If no arguments provided**:
-- Check git status for uncommitted changes
-- Review files with modifications (use `git diff` to see changes)
-- If no uncommitted changes, review recent commits (last 1-3 commits)
+### 2. Clarify Requirements
 
-Use TodoWrite to track the workflow.
+Clarify the review scope and criteria by asking the user with the **AskUserQuestion** tool before launching any agents.
 
-### 2. Clarify Requirements (If Needed)
-
-If the review scope or criteria are unclear, use the **AskUserQuestion** tool to ask:
-- What specific aspects to focus on?
+- What specific aspects to focus on? (code quality, architecture patterns, feature completeness, etc.)
 - Any particular concerns or requirements?
-- Should this check against specific coding standards?
 
-### 3. Launch Code Reviewer
+### 3. (Optional) Launch PR Analyzer
+
+**Only if the specific PR is provided:**
+
+Launch the **pr-analyzer** agent to analyze the PR with clear review requirements and scope. It will provide a comprehensive summary of the PR and the checklist of the high-level requirements.
+
+### 4. Launch Code Reviewer
 
 Launch the **code-reviewer** agent to perform the review:
-- Provide clear scope (files to review)
-- Specify review criteria (code quality, architecture patterns)
+- Provide the review requirements and scope
 - Let the agent autonomously analyze and provide feedback
 
-The agent will:
-- Analyze code quality (readability, maintainability, best practices)
-- Review architecture patterns and design
-- Identify technical debt
-- Provide structured, actionable feedback
+The agent will provide a comprehensive code review to meet the review requirements and scope.
 
-### 4. Present Summary
+### 5. Present Summary
 
-Once the agent completes, summarize:
-- Key findings (critical issues, concerns, improvements)
-- Overall assessment
-- Recommended actions
+Once the agent completes, present the summary report with the following output format:
+
+**Format**:
+```markdown
+## Summary
+[Brief overview of review findings]
+
+## Critical Issues
+[Issues that must be addressed]
+- [Issue description] at file.ext:line
+  - Impact: [Why this matters]
+  - Recommendation: [How to fix]
+
+## Major Concerns
+[Issues that should be addressed]
+- [Issue description] at file.ext:line
+  - Concern: [What could go wrong]
+  - Suggestion: [Alternative approach]
+
+## Minor Improvements
+[Optional improvements for code quality]
+- [Suggestion] at file.ext:line
+  - Benefit: [Why this would help]
+
+## Recommended Actions
+[Overall suggestions for next steps]
+```
 
 ## Key Principles
 
-- **Focused scope** - Review specific files or recent changes, not entire codebase
-- **Agent autonomy** - Trust code-reviewer to handle detailed analysis
+- **Focused scope** - Define clear review requirements and scope
+- **Agent autonomy** - Trust agents to handle detailed analysis
 - **Minimal orchestration** - Coordinate at high level, don't duplicate agent work
 - **Clear scope** - Ensure reviewer knows exactly what to review
-
-## Notes
-
-- For full PR reviews, use `/pr-review` instead
-- For security-focused reviews, use `/security-review` instead
-- Use git commands to determine scope when needed
