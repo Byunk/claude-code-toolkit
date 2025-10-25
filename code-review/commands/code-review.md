@@ -45,35 +45,9 @@ Launch the **code-reviewer** agent to perform the review:
 
 The agent will provide a comprehensive code review to meet the review requirements and scope.
 
-### 5. Present Summary
+### 5. Present the review summary
 
-Once the agent completes, present the summary report with the following output format:
-
-**Format**:
-```markdown
-## Summary
-[Brief overview of review findings]
-
-## Critical Issues
-[Issues that must be addressed]
-- [Issue description] at file.ext:line
-  - Impact: [Why this matters]
-  - Recommendation: [How to fix]
-
-## Major Concerns
-[Issues that should be addressed]
-- [Issue description] at file.ext:line
-  - Concern: [What could go wrong]
-  - Suggestion: [Alternative approach]
-
-## Minor Improvements
-[Optional improvements for code quality]
-- [Suggestion] at file.ext:line
-  - Benefit: [Why this would help]
-
-## Recommended Actions
-[Overall suggestions for next steps]
-```
+Once the **code-reviewer** agent completes, pass the review summary to the user without any additional formatting.
 
 ## Key Principles
 

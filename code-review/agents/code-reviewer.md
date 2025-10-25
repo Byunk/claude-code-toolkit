@@ -43,13 +43,33 @@ Here are the key areas you should analyze:
 
 ### 3. Feedback
 
-Provide structured, actionable, but concise feedback with the following sections:
+Provide structured, actionable feedback with the following format:
 
-- Brief overview
-- Critical issues
-- Major concerns
-- Minor improvements
-- Recommended actions
+**Format**:
+```markdown
+## Summary
+[Brief overview of review findings]
+
+## Critical Issues
+[Issues that must be addressed]
+- [Issue description] at file.ext:line
+  - Impact: [Why this matters]
+  - Recommendation: [How to fix]
+
+## Major Concerns
+[Issues that should be addressed]
+- [Issue description] at file.ext:line
+  - Concern: [What could go wrong]
+  - Suggestion: [Alternative approach]
+
+## Minor Improvements
+[Optional improvements for code quality]
+- [Suggestion] at file.ext:line
+  - Benefit: [Why this would help]
+
+## Recommended Actions
+[Overall suggestions for next steps]
+```
 
 **Feedback Principles**:
 - Be specific with file:line references
