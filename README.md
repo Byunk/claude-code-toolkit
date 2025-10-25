@@ -24,12 +24,28 @@ Launch Claude Code and run the following command:
 
 Use the following slash commands as needed.
 
+**Feature Development**:
+
+Recommended to use this command for complex feature development.
+
 ```bash
 /fullstack-dev:feature-dev <Describe the feature in detail>
+```
 
+**Comprehensive Code Review**:
+
+```bash
 /code-review:code-review Review the PR #123
 /code-review:code-review Review the changes in the current branch
 /code-review:code-review Review the changes in the FOO module
+```
+
+**Quick Code Review**:
+
+Note: This command does not invoke any subagents. Recommend you to use this command with fresh context with `/clear` command before using it.
+
+```bash
+/code-review:quick-review Review the changes in the BAR module
 ```
 
 ## Design Principles
