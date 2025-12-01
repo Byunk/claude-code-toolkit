@@ -8,6 +8,7 @@ This project is a comprehensive toolkit for coding in Claude Code. It includes a
 claude-code-toolkit/
 ├── code-review/           # Code review plugin
 ├── fullstack-dev/         # Full-stack development plugin
+├── neo4j-dev/             # Neo4j development plugin
 ├── scripts/               # Utility scripts
 ├── DESIGN_PRINCIPLES.md   # Design principles
 └── README.md              # README

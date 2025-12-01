@@ -6,7 +6,7 @@
     "url": "https://github.com/Byunk"
   },
   "metadata": {
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "Comprehensive toolkit for coding in Claude Code"
   },
   "plugins": [
@@ -19,6 +19,11 @@
       "name": "code-review",
       "description": "Comprehensive code review toolkit for quality, architecture, and security analysis",
       "source": "./code-review"
+    },
+    {
+      "name": "neo4j-dev",
+      "description": "Neo4j development toolkit for graph data modeling and Cypher query development",
+      "source": "./neo4j-dev"
     }
   ]
 }

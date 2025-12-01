@@ -1,0 +1,9 @@
+{
+  "name": "neo4j-dev",
+  "description": "Neo4j development toolkit for graph data modeling and Cypher query development with MCP server integration",
+  "version": "1.0.0",
+  "author": {
+    "name": "Kyungho Byoun",
+    "email": "kyungho.byoun@gmail.com"
+  }
+}
